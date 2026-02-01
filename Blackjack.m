@@ -12,12 +12,25 @@ myDeck.vals=myVals';
 myDeck.suits=mySuits';
 myDeck.cardName=myDeck.vals+ " of "+myDeck.suits
 
+for i = 1:nPlayers 
+    myPlayers.name{i}=input("Player "+ i + " name: ", "s");
+end 
+
+myPlayers.money = repmat(1000, [nPlayers, 1])
+
 % use randperm function to shuffle, once shuffled cards must be drawn in
 % the shuffled order 
-
+playingDeck=myDeck(randperm(height(myDeck)), :);
+myPlayers.handVal = cell(nPlayers, 1);
 %{
 function #2: deal the cards 
 draws cards in the order after shuffle and deal 2 cards to each player 
+for i=1:nPlayers
+    hand = playingDeck(1:2, :); 
+    playingDeck(1:2, :) = []; 
+    myPlayers.handVal{i} = hand.vals';
+end 
+
 %}
 
 % Blackjack Pseudocode 
